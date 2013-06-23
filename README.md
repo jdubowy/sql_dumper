@@ -31,6 +31,11 @@ Or install it yourself as:
       include SqlDumper
     end
 
+### Dumping object to sql
+
+    User.new.to_sql
+    User.new.to_sql(excluded_columns: [:foo])
+
 ## Contributing
 
 1. Fork the repo
