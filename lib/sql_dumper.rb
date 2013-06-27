@@ -9,7 +9,8 @@ module SqlDumper
       # active record somehow supports giving raw db vaues)
       v = send(k)
       if v.is_a?(String)
-        v = "'#{v}'"
+        # TODO: there must be more elegant way of escaping quotes
+        v = "'#{v.gsub("'") {|s| %q{\'} }.gsub('"') {|s| %q{\"} } }'"
       elsif v == nil
         v = "NULL"
       elsif v.is_a?(TrueClass)
