@@ -25,6 +25,6 @@ module SqlDumper
       end
       "`#{k}`=#{v}"
     }.join(', ')
-    "INSERT INTO #{self.class.table_name} SET #{set_str};"
+    "INSERT INTO `#{self.class.table_name}` SET #{set_str};"
   end
 end

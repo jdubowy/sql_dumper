@@ -43,7 +43,7 @@ describe :SqlDumper do
 
   describe "when asked to dump with no exclusions" do
     it "returns insert with all columns" do
-      expected = "INSERT INTO foo_bars SET `id`=1, `c_int`=123, " +
+      expected = "INSERT INTO `foo_bars` SET `id`=1, `c_int`=123, " +
         "`c_float`=234.234, `c_str`='SDF', `c_bool`=1, `c_null`=NULL, " +
         "`c_date`='2013-01-02', `c_time`='2014-07-23 04:43:05';"
       assert_equal expected, @object.to_sql
@@ -52,7 +52,7 @@ describe :SqlDumper do
 
   describe "when asked to dump with exclusions" do
     it "returns insert lacking exclusions" do
-      expected = "INSERT INTO foo_bars SET `c_int`=123, `c_str`='SDF', " +
+      expected = "INSERT INTO `foo_bars` SET `c_int`=123, `c_str`='SDF', " +
       "`c_bool`=1, `c_null`=NULL, `c_date`='2013-01-02';"
       assert_equal expected, @object.to_sql(excluded_columns: [:id, :c_float, :c_time])
     end
